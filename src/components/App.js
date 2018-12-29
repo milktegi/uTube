@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import youtube from '../apis/youtube';
 import SearchBar from './SearchBar';
+import VideoList from './VideoList'
 
 class App extends Component {
 
@@ -21,7 +22,7 @@ class App extends Component {
     return (
       <div className="ui container">
         <SearchBar onTermSubmit={this.onTermSubmit} />
-        {this.state.videos.length} 개의 영상이 있습니다.
+        <VideoList videos={this.state.videos}/>
       </div>
     );
   }
