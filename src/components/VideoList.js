@@ -1,11 +1,15 @@
 import React  from 'react';
+import VideoItem from './VideoItem'
 
-const VideoList = (props) => {
+const VideoList = ({ videos }) => {
 	// props.videos <= array 
-
+	// create a video item 
+	const renderedList = videos.map((video)=>{
+		return <VideoItem video={video}/>;
+	})
 	return (
 		<div>
-      테스트 {props.videos.length} 개가 배열에 잘 들어와있는지
+      {renderedList} 
 		</div>
 	);
 }
