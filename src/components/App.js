@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import youtube from '../apis/youtube';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 class App extends Component {
   state = {
     videos: [],
-    selectedVideos: null
+    selectedVideo: null
   };
 
   onTermSubmit = async term => {
@@ -20,15 +21,24 @@ class App extends Component {
     // console.log(response);
   };
 
+  // 비디오 하나가 선택되었을 때
   onVideoSelect = video => {
-    console.log('from the app!', video);
+    // console.log('from the app!', video);
+    // vItem부터 클릭받고 올라오면 앱 상태 관리를
+    // null에서 선택된 비디오 1개로 갱신
+    this.setState({ selectedVideo: video })
   };
 
   render() {
     return (
       <div className="ui container">
-        <SearchBar onTermSubmit={this.onTermSubmit} />
-        <VideoList onVselect={this.onVideoSelect} videos={this.state.videos} />
+        <SearchBar 
+        onTermSubmit={this.onTermSubmit} />
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList 
+        onVselect={this.onVideoSelect} 
+        videos={this.state.videos}/>
+    
       </div>
     );
   }
